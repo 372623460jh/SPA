@@ -7,7 +7,7 @@
 ----
 ## 前言：
 
-### 本SPA框架适用于移动端混合app开发参照了Android和React Native的部分设计理念。可以本人开源MVVM框架VU结合使用。控制器页面一一对应，业务层可以轻松自由的控制页面。
+### 本SPA框架适用于移动端混合app开发参照了Android和React Native的部分设计理念。可与本人开源MVVM框架VU结合使用。控制器页面一一对应，业务层可以轻松自由的控制页面。
 
 - ### 使用该框架必须掌握的几个点：
 
@@ -146,7 +146,7 @@
     安利一发vu,vu是参照vue思想开发出的一个轻量,高性能的mvvm框架,之所以叫vu寓意是残疾版的vue。
 
     ```javascript
-    // 使用模板和数据渲染出dom
+    // 使用vu创建视图模型对象
     var template =
         '<div class="index">' +
         '<div class="index_box">main</div>' +
