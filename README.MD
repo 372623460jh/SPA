@@ -9,18 +9,19 @@
 
 ### 本SPA框架适用于移动端混合app开发参照了Android和React Native的部分设计理念。可以本人开源MVVM框架VU结合使用。控制器页面一一对应，业务层可以轻松自由的控制页面。
 
-- ###使用该框架必须掌握的几个点：
+- ### 使用该框架必须掌握的几个点：
+
 	1. **入口文件配置**
 	2. **spa框架中自带模板及模板引擎**
 	3. **控制器概念**
 	4. **生命周期方法**
-	5. **核心API**
+	5. **SPA暴露的属性和方法**
 	
-## Demo
+## 项目目录
 
 - 以项目中examples文件下的简单demo举例，下图是各个文件目录的含义
 
-    - 项目目录：https://github.com/372623460jh/SPA/tree/master/dist
+    - 项目目录：https://github.com/372623460jh/SPA/tree/master/examples/simpleDemo
 
     ![Alt text](http://img.ijianghe.cn/images/jiang/$jhCatalog.png)
 	
@@ -505,3 +506,8 @@
 
 ## Demo
 
+- demo地址：https://github.com/372623460jh/SPA/tree/master/examples/simpleDemo
+
+- dev链接：http://libs.ijianghe.cn/js/spa/spa.js
+
+- pro链接：http://libs.ijianghe.cn/js/spa/spa.min.js
