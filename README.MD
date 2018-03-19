@@ -5,7 +5,8 @@
 日期：2018年3月18日
 
 ----
-##前言：
+## 前言：
+
 ### 本SPA框架适用于移动端混合app开发参照了Android和React Native的部分设计理念。可以本人开源MVVM框架VU结合使用。控制器页面一一对应，业务层可以轻松自由的控制页面。
 
 - ###使用该框架必须掌握的几个点：
@@ -15,7 +16,7 @@
 	4. **生命周期方法**
 	5. **核心API**
 	
-##Demo
+## Demo
 
 - 以项目中examples文件下的简单demo举例，下图是各个文件目录的含义
 
@@ -23,7 +24,7 @@
 
     ![Alt text](http://img.ijianghe.cn/images/jiang/$jhCatalog.png)
 	
-##文件：
+## 文件：
 
 - 系统文件
 	1. app.js *入口文件,需使用者自主编写*
@@ -41,7 +42,7 @@
 2. 控制器文件需要在入口js`app.js`中手动引入;
 3. 对应样式表中的选择器建议以`路由名_`来命名（如：books.css中的按钮选择器建议为`.books_btn`）该条不是强制要求只是为了防止样式表中选择器冲突给出的建议;
 
-##入口文件配置
+## 入口文件配置
 
 - app.js是webpack打包的入口文件，在该文件中会引入公共样式，页面控制器，初始化需要用到的库。
 
@@ -80,7 +81,7 @@
 2. 当路由变化spa框架会加载对应路由的控制器装载到主页面中，装载到init时的`container`属性配置的选择器中;
 3. 当路由找不到对应的控制器时会跳转到init时的`errRoute`属性配置的路由；
 
-##模板和模板引擎
+## 模板和模板引擎
 
 - 模板
 
@@ -135,7 +136,7 @@
     	2. 	{{B}}表示取B的值
     	3. 	$jh.parseDom方法会将template模板装载data数据后返回一个真实dom对象；
 
-##MVVM框架
+## MVVM框架
     
 上述介绍的模板引擎当数据发生变化时不会引起界面的局部更新，只能手动更新页面，导致性能下降
 
@@ -176,7 +177,7 @@
     // vu.$el就是渲染出来的真实dom
     ```
 
-##控制器
+## 控制器
 
 - 控制器很简单可以理解为Android开发中的Activity,控制器中有生命周期方法（稍后介绍），控制器必须继承`$jh.SpaController`类
 必须重写`onCreate`和`onResume`方法
@@ -248,7 +249,7 @@
     }
     ```
 
-##生命周期方法
+## 生命周期方法
 
 - onCreate:页面被创建时会执行此生命周期方法
 - onResume:页面被创建时会执行此生命周期方法（可不写，不写时不执行）
@@ -262,21 +263,21 @@
 
 * [$jh.go() 页面跳转(前进)](#a) 
 * [$jh.goBack() 页面跳转(返回)](#b) 
-* [$jh.switchPage 切换页面的方法](#p)
-* [$jh.parseDom() 将模板解析为dom](#c) 
-* [$jh.setStorage() 保存共享的数据](#d) 
-* [$jh.getStorage() 读取共享的数据](#e) 
-* [$jh.delStorage() 删除共享的数据](#f) 
-* [$jh.extend() 继承，深拷贝，浅拷贝方法](#g) 
-* [$jh.urlparams2obj() 将url中的参数字串转化为对象](#h) 
-* [$jh.obj2urlparams() 将对象转化为url参数字串](#i) 
-* [$jh.loading.show() 显示loading](#o)
-* [$jh.loading.close() 隐藏loading](#p)
-* [$jh.SpaController 控制器父类](#p)
-* [$jh.addController() 添加控制器](#p)
-* [$jh.backHandle() 物理按键返回和虚拟按键返回的接口](#p)
+* [$jh.switchPage 切换页面的方法](#c)
+* [$jh.parseDom() 将模板解析为dom](#d) 
+* [$jh.setStorage() 保存共享的数据](#e) 
+* [$jh.getStorage() 读取共享的数据](#f) 
+* [$jh.delStorage() 删除共享的数据](#g) 
+* [$jh.extend() 继承，深拷贝，浅拷贝方法](#h) 
+* [$jh.urlparams2obj() 将url中的参数字串转化为对象](#i) 
+* [$jh.obj2urlparams() 将对象转化为url参数字串](#j) 
+* [$jh.loading.show() 显示loading](#k)
+* [$jh.loading.close() 隐藏loading](#l)
+* [$jh.SpaController 控制器父类](#m)
+* [$jh.addController() 添加控制器](#n)
+* [$jh.backHandle() 物理按键返回和虚拟按键返回的接口](#o)
 * [$jh.init() spa初始化方法](#p)
-* [$jh.prop spa框架的一些常量](#p)
+* [$jh.prop spa框架的一些常量](#q)
 
 
 ---
@@ -305,12 +306,12 @@
          params:'age=24',
          animation:'easeIn',//页面切换动画
          pageKey:'pageB',//给页面一个id（唯一标识页面）
-         pageType:'normal',//页面类型（normal正常页，temp临时页）
+         pageType:'normal'//页面类型（normal正常页，temp临时页）
     });
     ```
 ---
 
-- <h3 id="b">spa.goBack() 页面跳转（返回）</h3> 
+- <h3 id="b">$jh.goBack() 页面跳转（返回）</h3> 
 
 	- B页面返回上一页：在B控制器中执行
     ```javascript
@@ -345,70 +346,162 @@
 
 ---
 
-- <h3 id="c">$jh.parseDom() 将模板解析为dom的方法（Mustache） </h3> 
+- <h3 id="c">$jh.switchPage() 页面跳转（返回）</h3> 
 
-	在A页面中想把模板（未使用模板引擎）转换为dom对象：`var rootDom = $jh.parseDom(template)[0];`
+	- 当前页切换到A页：如果A存在在栈中使用goBack返回,如果A页不存在在栈中使用go跳转
+    ```javascript
+    $jh.switchPage({
+         routeName:'/A'
+    });
+    ```
 
-	在A页面中想把模板（使用模板引擎）转换为dom对象：`var rootDom = $jh.parseDom(template,data)[0];`
+	- 综合用例切换到A页面并传递name=‘张三’的参数,通过url传递age=24,**(不建议使用url传参)**
+    ```javascript
+    $jh.switchPage({
+         routeName:'/A',
+         args:{name:'张三'},
+         params:'age=24',
+         animation:'easeOut',//页面切换动画
+         pageKey:'pageA',//返回页的id
+    });
+    ```
+---
+
+- <h3 id="d">$jh.parseDom() 将模板解析为dom的方法（Mustache） </h3> 
+
+	- 在A页面中想把模板（未使用模板引擎）转换为dom对象
+	
+	`var rootDom = $jh.parseDom(template)[0];`
+
+	- 在A页面中想把模板（使用模板引擎）转换为dom对象
+	
+	`var rootDom = $jh.parseDom(template,data)[0];`
 
 ---
 
-- <h3 id="d">$jh.set_storage() 保存共享的数据 </h3> 
+- <h3 id="e">$jh.setStorage() 保存共享的数据 </h3> 
 
-    spa用于保存数据的方法（数据是使用extend方法深拷贝过的）`$jh.setStorage(key,value);`
-
----
-
-- <h3 id="e">$jh.get_storage() 读取共享的数据 </h3> 
-
-    spa用于读取保存数据的方法 `$jh.getStorage(key);`
+    - spa用于保存数据的方法（数据是使用extend方法深拷贝过的）
+    
+    `$jh.setStorage(key,value);`
 
 ---
 
-- <h3 id="f">$jh.delStorage() 删除共享的数据 </h3> 
+- <h3 id="f">$jh.get_storage() 读取共享的数据 </h3> 
 
-    spa用于删除保存数据的方法 `$jh.delStorage(key);`
-
----
-
-- <h3 id="g">$jh.extend() 继承，深拷贝，浅拷贝方法 </h3> 
-
-	`$jh.extend(true,{},obj1,obj2...)`将obj1,obj2深拷贝到{}中
-
-    `$jh.extend({},obj1,obj2...)`将obj1,obj2浅拷贝到{}中
-
-    `$jh.extend(obj1)`将obj1浅拷贝到this(spa)中成为spa的静态属性
-
-    `$jh.extend(true,obj1)`将obj1深拷贝到this(spa)中成为spa的静态属性
+    - spa用于读取保存数据的方法
+     
+     `$jh.getStorage(key);`
 
 ---
 
-- <h3 id="h">$jh.urlparams2obj() 将url中的参数字串转化为对象 </h3> 
+- <h3 id="g">$jh.delStorage() 删除共享的数据 </h3> 
 
-	`$jh.urlparams2obj(str)`将str转为对象
-
----
-
-- <h3 id="i">$jh.obj2urlparams() 将对象转化为url参数字串 </h3> 
-
-	`$jh.obj2urlparams(obj)`将obj转为url中的参数字串
+    - spa用于删除保存数据的方法 
+    
+    `$jh.delStorage(key);`
 
 ---
 
-- <h3 id="o">spa.loading.show() 显示loading </h3>
+- <h3 id="h">$jh.extend() 继承，深拷贝，浅拷贝方法 </h3> 
 
-	`spa.loading.show({tips:标题, duration:延时关闭 , unclose:true})'`显示loading标题tips，duration显示多久，unclose===true点击loading不允许关闭
+    - 将obj1,obj2深拷贝到{}中
+
+	`$jh.extend(true,{},obj1,obj2...)`
+	
+	- 将obj1,obj2浅拷贝到{}中
+
+    `$jh.extend({},obj1,obj2...)`
+    
+    - 将obj1浅拷贝到this(spa)中成为spa的静态属性
+
+    `$jh.extend(obj1)`
+    
+    - 将obj1深拷贝到this(spa)中成为spa的静态属性
+
+    `$jh.extend(true,obj1)`
 
 ---
 
-- <h3 id="p">spa.loading.hide() 隐藏loading </h3>
+- <h3 id="i">$jh.urlparams2obj() 将url中的参数字串转化为对象 </h3> 
 
-	`spa.loading.show()'`隐藏loading
+    - 将url str转为对象
+
+	`$jh.urlparams2obj(str)`
 
 ---
 
-- <h3 id="q">spa.each() 遍历对象 </h3>
+- <h3 id="j">$jh.obj2urlparams() 将对象转化为url参数字串 </h3> 
 
-	`spa.each(obj，fun)'`遍历对象obj，执行回调fun
+    - 将obj转为url中的参数字串
 
-##Demo
+	`$jh.obj2urlparams(obj)`
+
+---
+
+- <h3 id="k">$jh.loading.show() 显示loading </h3>
+
+    - 显示loading
+    
+    ```javascript
+    $jh.loading.show({
+         name:'loading名',
+         data:{},//渲染loading需要的数据
+         duration:2000,//延时2000ms后关闭
+         unclose:true//点击其他区域不允许关闭loading
+    })
+    ```
+
+---
+
+- <h3 id="l">$jh.loading.close() 隐藏loading </h3>
+
+    - 隐藏loading
+
+	`spa.loading.show()'`
+	
+---
+
+- <h3 id="m">$jh.SpaController 控制器父类</h3>
+
+    - 是所有控制器的父类，所有控制器都要继承该父类
+
+	`$jh.SpaController`
+	
+---
+
+- <h3 id="n">$jh.addController() 添加控制器</h3>
+
+    - 将控制器添加到控制器管理栈中
+
+    `$jh.addController('routeName',控制器类)`
+    
+---
+
+- <h3 id="o">$jh.backHandle() 物理按键返回和虚拟按键返回的接口</h3>
+
+    - 物理按键返回和虚拟按键点击时执行该方法,就会将返回事件触发到当前栈顶控制器
+
+    `$jh.backHandle()`
+    
+---
+
+- <h3 id="p">$jh.init() spa初始化方法</h3>
+
+    - 在入口`app.js`文件中需要执行该初始化方法
+    ```javascript
+    $jh.init({
+        home: '/testA',//默认路由
+        container: '#jhAppWrap',//主页面中的占位标签
+        errRoute: '/404'//错误页路由名不配置默认是/error
+    });
+    ```
+    
+---
+
+- <h3 id="p">$jh.prop spa框架的一些常量</h3>
+
+    - `$jh.prop`中保存着spa框架的一些常量,如版本号之类,开发人员可以在任意位置添加读取。
+
+## Demo
+
