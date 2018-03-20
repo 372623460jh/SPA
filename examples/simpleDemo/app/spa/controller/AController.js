@@ -24,6 +24,10 @@ class Acontroller extends $jh.SpaController {
             back: '关闭',
             name: '当前是testA页'
         };
+        setTimeout(function () {
+            // 关闭启动屏
+            jsInterface.interface.hideStartScreen();
+        }, 500);
         that.render(nowPage, lastPage);
     }
 
@@ -56,7 +60,7 @@ class Acontroller extends $jh.SpaController {
     };
 
     onBack() {
-        $jh.goBack();
+        jsInterface.interface.exit();
     };
 }
 $jh.addController('/testA', Acontroller);

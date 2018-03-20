@@ -13,7 +13,11 @@ autoViewPort();
 import 'babel-polyfill';
 
 // 引入spa组件
-import '../../../../src/spa';
+import $jh from '../../../../src/spa';
+
+// 关联返回控制器和js原生Android接口
+import jsInterface from 'lib/jsInterface/jsInterface';
+jsInterface.commonMethod.setBackHandlerCB($jh.backHandle);
 
 /**
  * 公共样式部分
